@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicles</title>
+</head>
+<body>
+
+<h1>Workshop Vehicles</h1>
+
+<p><a href="/">🏠 Home</a></p>
+
+<ul>
+{% for car in cars %}
+    <li>{{ car }}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>
