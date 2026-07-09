@@ -5,15 +5,31 @@
 </head>
 <body>
 
-<h1>Workshop Vehicles</h1>
+<h1>Workshop Vehicle Register</h1>
 
 <p><a href="/">🏠 Home</a></p>
 
-<ul>
+<table border="1" cellpadding="8">
+
+<tr>
+    <th>Registration</th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Year</th>
+</tr>
+
 {% for car in cars %}
-    <li>{{ car }}</li>
+
+<tr>
+    <td>{{ car.registration }}</td>
+    <td>{{ car.make }}</td>
+    <td>{{ car.model }}</td>
+    <td>{{ car.year }}</td>
+</tr>
+
 {% endfor %}
-</ul>
+
+</table>
 
 </body>
 </html>
