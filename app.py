@@ -37,5 +37,38 @@ def vehicles():
 
     return render_template("vehicles.html", cars=cars)
 
+@app.route("/jobs")
+def jobs():
+
+    jobs = [
+
+        {
+            "id":1001,
+            "vehicle":"Mercedes EQC",
+            "technician":"Larry",
+            "status":"In Progress",
+            "cost":450
+        },
+
+        {
+            "id":1002,
+            "vehicle":"BMW 320d",
+            "technician":"John",
+            "status":"Completed",
+            "cost":220
+        },
+
+        {
+            "id":1003,
+            "vehicle":"Audi A6",
+            "technician":"Mike",
+            "status":"Waiting Parts",
+            "cost":600
+        }
+
+    ]
+
+    return render_template("jobs.html",jobs=jobs)
+
 if __name__ == "__main__":
     app.run(debug=True)

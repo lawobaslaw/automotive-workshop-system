@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Workshop Job Register</h2>
+
+<table border="1" cellpadding="8">
+
+<tr>
+    <th>Job ID</th>
+    <th>Vehicle</th>
+    <th>Technician</th>
+    <th>Status</th>
+    <th>Cost</th>
+</tr>
+
+{% for job in jobs %}
+
+<tr>
+    <td>{{ job.id }}</td>
+    <td>{{ job.vehicle }}</td>
+    <td>{{ job.technician }}</td>
+    <td class="{{ job.status.lower().replace(' ', '-') }}">{{ job.status }}</td>
+    <td>&pound;{{ "%.2f"|format(job.cost) }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
