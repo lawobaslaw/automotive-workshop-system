@@ -10,7 +10,7 @@ class Vehicle(db.Model):
     model = db.Column(db.String(50), nullable=False)
     year = db.Column(db.Integer)
     jobs = db.relationship("Job", backref="vehicle")
-
+    
 class Job(db.Model):
     __tablename__ = "jobs"
     id = db.Column(db.Integer, primary_key=True)

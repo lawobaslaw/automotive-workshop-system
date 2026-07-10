@@ -1,6 +1,7 @@
-__pycache__/
+
 *.pyc
+instance/
+.env
 .venv/
 venv/
-.env
-instance/
+workshop.db
