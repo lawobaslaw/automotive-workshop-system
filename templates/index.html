@@ -4,12 +4,56 @@
 
 <h2>Home</h2>
 
-<p>Welcome to my DevOps learning project.</p>
+<p>Welcome to project.</p>
 
 <ul>
-    <li><a href="/vehicles">🚗 Vehicles</a></li>
-    <li>🔧 Jobs (Coming Soon)</li>
+    
     <li>👨‍🔧 Mechanics (Coming Soon)</li>
 </ul>
+
+<h3>Workshop Summary</h3>
+
+<div class="row row-cols-1 row-cols-md-2 g-3">
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Total Vehicles</h5>
+                <p class="card-text display-6">{{ total_vehicles }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Total Jobs</h5>
+                <p class="card-text display-6">{{ total_jobs }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Completed Jobs</h5>
+                <p class="card-text display-6">{{ completed_jobs }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">In Progress Jobs</h5>
+                <p class="card-text display-6">{{ in_progress_jobs }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Waiting for Parts</h5>
+                <p class="card-text display-6">{{ waiting_parts }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

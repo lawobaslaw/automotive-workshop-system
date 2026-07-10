@@ -3,25 +3,37 @@
 {% block content %}
 
 <h2>Workshop Job Register</h2>
-
-<table border="1" cellpadding="8">
+<form method="GET" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Registration" aria-label="Search by registration">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>
+<p><a href="/jobs/new" class="btn btn-primary mb-3">Add Job</a></p>
+<table class="table table-striped table-hover">
 
 <tr>
-    <th>Job ID</th>
-    <th>Vehicle</th>
+    <th>Registration</th>
+    <th>Make</th>
+    <th>Model</th>
     <th>Technician</th>
     <th>Status</th>
     <th>Cost</th>
+    <th>Delete</th>
+    <th>Edit</th>
 </tr>
 
 {% for job in jobs %}
 
 <tr>
-    <td>{{ job.id }}</td>
-    <td>{{ job.vehicle }}</td>
+    <td>{{ job.vehicle.registration }}</td>
+    <td>{{ job.vehicle.make }}</td>
+    <td>{{ job.vehicle.model }}</td>
     <td>{{ job.technician }}</td>
-    <td class="{{ job.status.lower().replace(' ', '-') }}">{{ job.status }}</td>
+    <td><span class="{{ job.status.lower().replace(' ', '-') }}">{{ job.status }}</span></td>
     <td>&pound;{{ "%.2f"|format(job.cost) }}</td>
+    <td><a href="/job/delete/{{ job.id }}" class="btn btn-danger">Delete</a></td>
+    <td><a href="/job/edit/{{ job.id }}" class="btn btn-warning">Edit</a></td>
 </tr>
 
 {% endfor %}

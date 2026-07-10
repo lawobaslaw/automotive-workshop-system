@@ -3,18 +3,8 @@ body{
     margin:40px;
 }
 
-table{
-    border-collapse:collapse;
-    width:100%;
-}
 
-table,th,td{
-    border:1px solid black;
-}
 
-th,td{
-    padding:10px;
-}
 
 nav a{
     margin-right:15px;
@@ -26,7 +16,7 @@ nav a{
 }
 
 .in-progress{
-    color:orange;
+    color:orange ;
 }
 
 .waiting-parts{
