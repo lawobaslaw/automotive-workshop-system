@@ -1,6 +1,16 @@
 from flask import Flask, render_template
+from database import Vehicle, db
 
 app = Flask(__name__)
+
+app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///workshop.db"
+
+db.init_app(app)
+
+with app.app_context():
+    db.create_all()
+
+
 
 @app.route("/")
 def home():
@@ -8,32 +18,7 @@ def home():
 
 @app.route("/vehicles")
 def vehicles():
-    cars = [
-        {
-        "registration": "LP21 EQC",
-        "make": "Mercedes",
-        "model": "EQC",
-        "year": 2021
-    },
-    {
-        "registration": "BM19 320",
-        "make": "BMW",
-        "model": "320d",
-        "year": 2019
-    },
-    {
-        "registration": "FD20 FCS",
-        "make": "Ford",
-        "model": "Focus",
-        "year": 2020
-    },
-    {
-        "registration": "TY22 COR",
-        "make": "Toyota",
-        "model": "Corolla",
-        "year": 2022
-    }
-    ]
+    cars = Vehicle.query.all()
 
     return render_template("vehicles.html", cars=cars)
 
