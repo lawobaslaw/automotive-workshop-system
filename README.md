@@ -27,7 +27,7 @@ A full-stack workshop management application built with Flask as part of my DevO
 - [x] Flask setup
 - [x] Vehicle listing
 - [x] Vehicle CRUD
-- [ ] Job Management
+- [x] Job Management
 - [ ] Docker
 - [ ] GitHub Actions
 - [ ] AWS Deployment
