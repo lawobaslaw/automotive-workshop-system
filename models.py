@@ -1,3 +1,6 @@
+
+from database import db
+
 class Vehicle(db.Model):
     __tablename__ = "vehicles"
     id = db.Column(db.Integer, primary_key=True)

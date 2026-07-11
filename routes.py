@@ -1,6 +1,11 @@
-from database import Job, Vehicle, db
+from flask import Blueprint, render_template, request, redirect, url_for, abort
 
-@app.route("/")
+from database import db
+from models import Vehicle, Job
+
+main = Blueprint("main", __name__)
+
+@main.route("/")
 def home():
     # Optimised count queries executed in parallel/individually
     total_vehicles = db.session.query(Vehicle).count()
@@ -19,7 +24,7 @@ def home():
     )
 
 
-@app.route("/vehicles")
+@main.route("/vehicles")
 def vehicles():
     search = request.args.get("search", "").strip()
     
@@ -32,7 +37,7 @@ def vehicles():
     return render_template("vehicles.html", cars=cars)
 
 
-@app.route("/jobs")
+@main.route("/jobs")
 def jobs():
     search = request.args.get("search", "").strip()
     
@@ -45,7 +50,7 @@ def jobs():
     return render_template("jobs.html", jobs=jobs_list)
 
 
-@app.route("/vehicle/new", methods=["GET", "POST"])
+@main.route("/vehicle/new", methods=["GET", "POST"])
 def add_vehicle():
     if request.method == "POST":
         vehicle = Vehicle(
@@ -61,17 +66,21 @@ def add_vehicle():
     return render_template("add_vehicle.html")
 
 
-@app.route("/vehicle/delete/<int:id>")
+@main.route("/vehicle/delete/<int:id>")
 def delete_vehicle(id):
-    vehicle = db.session.get(Vehicle, id) or Flask.abort(404)
+    vehicle = db.session.get(Vehicle, id)
+    if vehicle is None:
+        abort(404)
     db.session.delete(vehicle)
     db.session.commit()
     return redirect(url_for("vehicles"))
 
 
-@app.route("/vehicle/edit/<int:id>", methods=["GET", "POST"])
+@main.route("/vehicle/edit/<int:id>", methods=["GET", "POST"])
 def edit_vehicle(id):
-    vehicle = db.session.get(Vehicle, id) or Flask.abort(404)
+    vehicle = db.session.get(Vehicle, id) 
+    if vehicle is None:
+     abort(404)
 
     if request.method == "POST":
         vehicle.registration = request.form["registration"]
@@ -84,7 +93,7 @@ def edit_vehicle(id):
     return render_template("add_vehicle.html", vehicle=vehicle)
 
 
-@app.route("/jobs/new", methods=["GET", "POST"])
+@main.route("/jobs/new", methods=["GET", "POST"])
 def add_job():
     vehicles_list = db.session.query(Vehicle).all()
 
@@ -102,17 +111,21 @@ def add_job():
     return render_template("add_job.html", vehicles=vehicles_list)
 
 
-@app.route("/job/delete/<int:id>")
+@main.route("/job/delete/<int:id>")
 def delete_job(id):
-    job = db.session.get(Job, id) or Flask.abort(404)
+    job = db.session.get(Job, id) 
+    if job is None:
+     abort(404)
     db.session.delete(job)
     db.session.commit()
     return redirect(url_for("jobs"))
 
 
-@app.route("/job/edit/<int:id>", methods=["GET", "POST"])
+@main.route("/job/edit/<int:id>", methods=["GET", "POST"])
 def edit_job(id):
-    job = db.session.get(Job, id) or Flask.abort(404)
+    job = db.session.get(Job, id) 
+    if job is None:
+        abort(404)
     vehicles_list = db.session.query(Vehicle).all()
 
     if request.method == "POST":
